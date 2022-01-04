@@ -1,0 +1,83 @@
+{%with messages = get_flashed_messages() %}
+    {%if messages %}
+        <script>
+            alert("{{ messages[-1] }}")
+        </script>
+    {% endif %}
+{% endwith %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>화장품 리뷰 생성기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.esdrop.com/d/fha5flk1blzo/fUetLvRxXr.png">
+</head>
+
+<body>
+    <div class="generate" style="margin:1.3% 33% 0 33%; padding:10px; background-color:white">
+
+        <h1 style="padding:10px"> 한국어 가상 화장품 리뷰 생성기</h1>
+
+        <h3>리뷰 생성 옵션</h3>
+        <form action ="/" method="post">
+            <label>
+            키워드:
+            <input type="text" name="keyword" style="min-height:18px;width:30%" autocomplete="off">
+            {{ keyword_error }}
+            </label>
+            <br><br>
+
+            <label>리뷰 길이:
+            <select name="length" style="min-height:26px;width:15%">
+                <option value="60"> Short </option>
+                <option value="80"> Medium </option>
+                <option value="100"> Long </option>
+            </select>
+            </label>
+            <br><br>
+
+            <label>리뷰 스타일
+                <br>
+                <input type="radio" name="types" value="strict">
+                Strict: 반복적이고 단순한 형태의 리뷰를 출력합니다.
+                <br>
+                <input type="radio" name="types" value="natural" checked>
+                Natural: 다양하면서 무작위적인 형태의 리뷰를 출력합니다.
+            </label>
+            <br><br>
+
+            <label>생성할 리뷰 수:
+            <input type="radio" name="nums" value="1" checked> 1
+            <input type="radio" name="nums" value="2"> 2
+            <input type="radio" name="nums" value="3"> 3
+            </label>
+            <br><br>
+
+            <button class="btn btn-primary btn=lg" type="submit" id="button1" style="min-height:28px;width:92px"> 생성하기!</button>
+        </form>
+        <br>
+
+        <h3>리뷰 생성 결과</h3>
+            <label id="result">
+                <p>{{ generated_text }}</p>
+            </label>
+            <br><br>
+
+        <h3>모델 설명</h3>
+        본 텍스트 생성 모델은 SK Telecom에서 OpenAI GPT 모델을 바탕으로 구축하여 공개한 KoGPT2 Ver 2.0 모델을 약 20만개의 한국어 화장품 리뷰 데이터로 파인튜닝(fine-tuning)하여 재구축되었습니다.
+        <ul type="circle" style="margin:3.5%; padding:0">
+            <li>OpenAI: <a href="https://openai.com/"> openai.com </a></li>
+            <li>SKT-AI KoGPT2: <a href="https://github.com/SKT-AI/KoGPT2"> github.com/SKT-AI/KoGPT2 </a></li>
+            <li>License: <a href="https://github.com/SKT-AI/KoGPT2/blob/master/LICENSE"> CC-BY-NC-SA 4.0 </a></li>
+            <li>제작: <a href="https://github.com/ztor2"> 강지철</a>, <a href="https://github.com/juxhee"> 한주희 </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

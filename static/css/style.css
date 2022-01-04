@@ -1,0 +1,18 @@
+* { font-family: 'Gowun Dodum', cursive;
+    font-size: 1em;
+}
+
+h1 { color: deeppink;
+    text-align: center;
+    font-size: 2.1em;
+}
+
+h3 { font-size: 1.1em;
+}
+
+a { text-decoration:none;
+    color: cornflowerblue;
+}
+
+p { white-space: pre-wrap;
+}
